@@ -1,4 +1,4 @@
-# Weather-Journal App Project
+# Weather-Journal App Project by Mohammed Kamal(abdelarb)
 
 ## Overview
 - This is app project depending on openweathermap.org API to dynamically get the current temperature based on the entered zip code location by the user 

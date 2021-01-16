@@ -1,8 +1,9 @@
 /* Global Variables */
 
 //my api credentials on the openweathermap website
+//convert the temperature from the API from Kevin to Celesius &units=metric
 const baseURL ='http://api.openweathermap.org/data/2.5/forecast?zip=';
-const apiKey = '&appid=fbeb4dbd126ba25da15bb0e6566ed111';
+const apiKey = '&units=metric&appid=fbeb4dbd126ba25da15bb0e6566ed111';
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
@@ -16,8 +17,7 @@ function performAction(e) {
     //add the data to POST
     .then(function (data) {
         console.log(data);
-        //convert the temperature from the API from Kevin to Celesius
-        let currentTemp = data.list[0].main.temp -273.15;
+        let currentTemp = data.list[0].main.temp;
         postData('/add', {
             date: d ,
             temp: currentTemp ,
@@ -59,9 +59,9 @@ const UpdateUI = async () => {
     const request = await fetch('/all');
     try {
         const weatherData = await request.json();
-        document.getElementById('date').innerHTML = `Date : ${weatherData[0].date}`;
-        document.getElementById('content').innerHTML = `your Feeling : ${weatherData[0].content}`;
-        document.getElementById('temp').innerHTML = `Your Area Zip :${document.getElementById('zip').value} current temperature is : ${weatherData[0].temp.toFixed(2)} °C`;
+        document.getElementById('date').innerHTML = `Date : ${weatherData.date}`;
+        document.getElementById('content').innerHTML = `your Feeling : ${weatherData.content}`;
+        document.getElementById('temp').innerHTML = `Your Area Zip :${document.getElementById('zip').value} current temperature is : ${weatherData.temp.toFixed(2)} °C`;
     //to catch current errors if there is errors
     }catch(error){
     console.log("error" , error);
